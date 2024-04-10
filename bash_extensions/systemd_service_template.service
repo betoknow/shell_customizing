@@ -1,0 +1,23 @@
+[Unit]
+Description=My Service
+Requires=other_service.service
+After=network-online.target other_service.service
+
+[Service]
+Type=simple
+Restart=on-failure
+RestartCount=3
+Environment="MYVAR=value"
+WorkingDirectory=%h/my_working_directory
+ExecStartPre=-/usr/local/bin/prepare_environment
+ExecStart=/path/to/your_binary %%i
+ExecReload=/path/to/reload_script
+ExecStopPost=-/usr/local/bin/cleanup_environment
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=myservice
+User=username
+Group=groupname
+
+[Install]
+WantedBy=multi-user.target
