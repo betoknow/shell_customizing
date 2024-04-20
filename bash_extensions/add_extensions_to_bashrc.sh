@@ -71,10 +71,9 @@ data = sun(loc.observer, date=current_date, tzinfo=loc.timezone)
 print(f"Sun data for {loc.name}:")
 for key in ['dawn', 'dusk', 'noon', 'sunrise', 'sunset']:
     print(f'{key:10s}: {data[key].strftime("%Y-%m-%d %H:%M:%S")}')
-}
 INNER_EOF
+}
 EOF
 fi
-
-echo "Die Änderungen wurden vorgenommen."
+echo "Changes applied."
 
