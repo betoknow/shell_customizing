@@ -61,7 +61,7 @@ fi
 if ! grep -qxF 'sun() {' "$BASHRC"; then
 cat >> "$BASHRC" << 'EOF'
 sun() {
-python3 << EOF
+python3 << INNER_EOF
 import datetime
 from astral import LocationInfo
 from astral.sun import sun
@@ -71,6 +71,8 @@ data = sun(loc.observer, date=current_date, tzinfo=loc.timezone)
 print(f"Sun data for {loc.name}:")
 for key in ['dawn', 'dusk', 'noon', 'sunrise', 'sunset']:
     print(f'{key:10s}: {data[key].strftime("%Y-%m-%d %H:%M:%S")}')
+}
+INNER_EOF
 EOF
 fi
 
